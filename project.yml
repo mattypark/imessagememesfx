@@ -1,0 +1,85 @@
+name: MemeFX
+options:
+  bundleIdPrefix: com.matthewpark
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    DEVELOPMENT_TEAM: R43H5332KH
+    CODE_SIGN_STYLE: Automatic
+    TARGETED_DEVICE_FAMILY: "1"
+
+targets:
+  # The home-screen app. Its job is to carry the extension; it also previews the board
+  # and says how to find it in Messages.
+  MemeFX:
+    type: application
+    platform: iOS
+    sources:
+      - Shared
+      - App
+    dependencies:
+      - target: MemeFXMessages
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.matthewpark.memefx
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: MemeFX
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+
+  # The drawer inside Messages: tap a pad to hear it, Send to drop it in the chat.
+  MemeFXMessages:
+    type: app-extension.messages
+    platform: iOS
+    sources:
+      - Shared
+      - Messages
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.matthewpark.memefx.messages
+    info:
+      path: Messages/Info.plist
+      properties:
+        CFBundleDisplayName: MemeFX
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.message-payload-provider
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).MessagesViewController
+
+  # Drives the real Messages app in the Simulator to the MemeFX drawer and screenshots it.
+  # Only for design shots; run with scripts/shots.sh.
+  MemeFXUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - UITests
+    dependencies:
+      - target: MemeFX
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.matthewpark.memefx.uitests
+        TEST_TARGET_NAME: MemeFX
+        GENERATE_INFOPLIST_FILE: YES
+
+schemes:
+  MemeFX:
+    build:
+      targets:
+        MemeFX: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - MemeFXUITests
