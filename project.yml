@@ -43,6 +43,10 @@ targets:
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         UILaunchScreen: {}
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        # memefx://invite?code=… — how a tapped invite link reaches the app.
+        CFBundleURLTypes:
+          - CFBundleURLName: com.matthewpark.memefx
+            CFBundleURLSchemes: [memefx]
 
   # The drawer inside Messages: tap a pad to hear it, Send to drop it in the chat.
   MemeFXMessages:
