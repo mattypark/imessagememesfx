@@ -11,8 +11,11 @@ workers_dev = true
 [[d1_databases]]
 binding = "DB"
 database_name = "memefx"
-database_id = "PASTE_AFTER_d1_create"
+database_id = "224c6ce9-504a-494b-b427-ac30a6d42362"
 
 # Secrets (never in this file — set with `wrangler secret put NAME`):
 #   APNS_KEY_ID, APNS_TEAM_ID, APNS_KEY_P8   the Apple push key (.p8) and its ids
 #   APNS_TOPIC = com.matthewpark.memefx
+
+[vars]
+APNS_TOPIC = "com.matthewpark.memefx"

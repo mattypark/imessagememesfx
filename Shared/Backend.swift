@@ -14,7 +14,7 @@ final class Backend: ObservableObject {
 
     /// Flip this to the deployed Worker once it's up. Empty means "backend off": the app still
     /// works as a soundboard and over iMessage, it just can't blast to rooms yet.
-    static let baseURL = URL(string: "https://memefx.workers.dev")
+    static let baseURL = URL(string: "https://memefx.matthew-parkk0.workers.dev")
 
     @Published private(set) var userId: String?
     @Published private(set) var rooms: [Room] = []

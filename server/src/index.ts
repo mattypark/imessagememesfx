@@ -121,7 +121,7 @@ async function createInvite(env: Env, userId: string): Promise<Response> {
   const code = await uniqueInvite(env);
   await env.DB.prepare("INSERT INTO invites (code, owner, created_at) VALUES (?, ?, ?)")
     .bind(code, userId, Date.now()).run();
-  return json({ code, url: `https://memefx.workers.dev/i/${code}` });
+  return json({ code, url: `https://memefx.matthew-parkk0.workers.dev/i/${code}` });
 }
 
 async function acceptInvite(env: Env, userId: string, body: Record<string, unknown>): Promise<Response> {
