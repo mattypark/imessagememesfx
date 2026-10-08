@@ -20,6 +20,9 @@ struct SoundEffect: Identifiable, Hashable {
     var id: String { command }
     var fileURL: URL? { Bundle.main.url(forResource: file, withExtension: nil) }
 
+    /// The bundled .caf iOS plays when a push names it (same stem as `file`).
+    var notificationSound: String { (file as NSString).deletingPathExtension + ".caf" }
+
     /// The name the attachment carries in the chat, e.g. "Vine Boom.m4a".
     var attachmentName: String { "\(title.capitalized).m4a" }
 
