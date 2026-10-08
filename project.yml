@@ -23,8 +23,15 @@ targets:
     sources:
       - Shared
       - App
+      # The .caf copies iOS plays when a push names one. A plain group flattens them to the
+      # bundle root, where the notification-sound lookup finds them by name.
+      - App/NotificationSounds
     dependencies:
       - target: MemeFXMessages
+    entitlements:
+      path: App/MemeFX.entitlements
+      properties:
+        aps-environment: development
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.matthewpark.memefx

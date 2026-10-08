@@ -21,3 +21,7 @@ Messages/Info.plist
 
 # myinstants.com clips: copyrighted uploads, personal builds only (scripts/fetch-instants.py)
 Shared/Instants/
+
+# Notification-sound copies of the myinstants clips (copyright; personal builds only)
+App/NotificationSounds/instant-*.caf
+App/NotificationSounds/sounds.json
